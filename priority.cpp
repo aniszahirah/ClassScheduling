@@ -114,8 +114,10 @@ for(int i=0;i<totalprocess;i++)
       
         // display the average waiting time 
         //and average turn around time 
-      
-    cout<<"\n\nAverage waiting time is : "; 
+    cout<< "\n\nOrder of processes gets executed : ";
+   	for (int i = 0 ; i < 3; i++)
+      cout << proc[i].course_code <<" " ;
+    cout<<"\n\nAverage waiting time : "; 
     cout<<wavg/(float)totalprocess<<endl; 
     cout<<"\nAverage turnaround time : "; 
     cout<<tavg/(float)totalprocess<<endl; 
