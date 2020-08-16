@@ -42,17 +42,17 @@ void arrangeArrival(int n, Process p[])
         pos = i;
         for(j = i + 1; j < n; j++)
         {
-            if(p[j].priority < p[pos].priority)
+            if(p[j].duration < p[pos].duration)
                 pos = j;
         }
- 
-        temp = p[i].priority;
-        p[i].priority = p[pos].priority;
-        p[pos].priority = temp;
  
         temp = p[i].duration;
         p[i].duration = p[pos].duration;
         p[pos].duration = temp;
+ 
+        temp = p[i].priority;
+        p[i].priority = p[pos].priority;
+        p[pos].priority = temp;
  
         temp = p[i].ccode;
         p[i].ccode = p[pos].ccode;
