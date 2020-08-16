@@ -42,7 +42,9 @@ Output :
 |1103|1|5|6|
 
 Order of scheduling =
+
 Average waiting time = 2.66667
+
 Average turnaround time = 4.66667
 
 ## SJF
@@ -57,7 +59,9 @@ Output :
 |1103|1|0|1|
 
 Order of scheduling =
+
 Average Waiting Time = 1.33333
+
 Average Turnaround Time = 3.33333
 
 ## Priority Scheduling
@@ -72,6 +76,8 @@ Output :
 |1103|1|3|4|
 
 Order of scheduling =	2201	3401	1103
+
 Average waiting time = 1.66667
+
 Average turnaround time = 3.66667
 
