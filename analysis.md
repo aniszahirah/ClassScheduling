@@ -41,7 +41,7 @@ Output :
 |3401|2|3|5|
 |1103|1|5|6|
 
-Order of scheduling = 
+Order of scheduling =
 Average waiting time = 2.66667
 Average turnaround time = 4.66667
 
@@ -56,7 +56,7 @@ Output :
 |3401|2|1|3|
 |1103|1|0|1|
 
-Order of scheduling = 
+Order of scheduling =
 Average Waiting Time = 1.33333
 Average Turnaround Time = 3.33333
 
