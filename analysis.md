@@ -1,3 +1,11 @@
+Group Members:
+1) Anis Zahirah Binti Ahmad Madani (1818060)
+2) Nurul Fadhillah Binti Ismail (1811722)
+3) Nur Syifa’ Aina Binti Zahaimi (1817794)
+4) Nur Asimah Binti Che Mamat (1813212)
+
+Section: 4
+
 # Introduction
 
 Describe the algorithms of your choice
