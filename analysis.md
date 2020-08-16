@@ -34,11 +34,44 @@ The input for analysis are as below:
 
 Give an analysis of your algo and compare it with the other two
 
-## Algo2
+Output :
+|Course Code|Duration|Waiting Time|Turnaround Time|
+|---|---|---|---|
+|2201|3|0|3|
+|3401|2|3|5|
+|1103|1|5|6|
+
+Order of scheduling = 
+Average waiting time = 2.66667
+Average turnaround time = 4.66667
+
+## SJF
 
 Give an analysis of your algo and compare it with the other two
 
-## Algo3
+Output : 
+|Course Code|Duration|Waiting Time|Turnaround Time|
+|---|---|---|---|
+|2201|3|3|6|
+|3401|2|1|3|
+|1103|1|0|1|
+
+Order of scheduling = 
+Average Waiting Time = 1.33333
+Average Turnaround Time = 3.33333
+
+## Priority Scheduling
 
 Give an analysis of your algo and compare it with the other two
+
+Output : 
+|Course Code|Duration|Waiting Time|Turnaround Time|
+|---|---|---|---|
+|2201|3|0|3|
+|3401|2|2|4|
+|1103|1|3|4|
+
+Order of scheduling =	2201	3401	1103
+Average waiting time = 1.66667
+Average turnaround time = 3.66667
 
