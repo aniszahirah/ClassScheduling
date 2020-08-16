@@ -18,7 +18,7 @@ Priority Scheduling is a method of scheduling processes that is based on priorit
 
 # Consideration
 
-To find the best class scheduling solution, three non-preemptive scheduling algorithms are compared. The algorithms involved in the analysis is First Come First Serve (FCFS), Shortest Job First (SJF) and Priority Scheduling. Similar data is used in arrival time, burst time(duration) and priority to calculate the average waiting time and average turnaround time.
+To find the best class scheduling solution, three non-preemptive scheduling algorithms are compared. The algorithms involved in the analysis is First Come First Serve (FCFS), Shortest Job First (SJF) and Priority Scheduling. Similar data is used in arrival time, burst time(duration) and priority to calculate the average waiting time and average turnaround time and to determine the order of process execution.
 
 # Analysis
 
