@@ -55,22 +55,11 @@ void arrangeArrival(int num, Process p[])
     } 
 } 
 
-/*
-mat[][0] = ccode
-mat[][1] = arrival_time
-mat[][2] = burst time @ duration
-mat[][3] = temp storage
-mat[][4] = wt
-mat[][5] = tat
-
-*/
 void completionTime(int num, Process p[]) 
 { 
     int temp, val; 
     int s[num];
-    
-    // wt[i] = p[i-1].duration + wt[i-1];
-    // tat[i] = p[i].duration + wt[i];  
+	
     s[0] = p[0].arrival_time + p[0].duration;
       
     for(int i = 1; i < num; i++) 
@@ -92,8 +81,6 @@ void completionTime(int num, Process p[])
         	swap(p[val].arrival_time, p[i].arrival_time); 
         }  
     } 
-    
-    
 } 
   
 int main() 
