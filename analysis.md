@@ -69,11 +69,11 @@ Average Turnaround Time = 3.33333
 Priority Scheduling is a method of scheduling processes that depends on priority. The processes with higher priority will be carried out first, whereas jobs with equal priorities are carried out on FCFS basis. The average waiting time and average turnaround time for priority scheduling is lower than FCFS but higher than SJF. Average waiting time and turnaround time is lower than FCFS because priority scheduling considers the priority of a process rather than executing all of the queued processes without considering the duration or priority. The reason why this algorithm has a higher average waiting time and average turnaround time than SJF is because it does not prioritize the process with lower duration. The order of process scheduling is executed based on arrival time and priority gives the result where 2201 is executed first while 3401 and 1103 is executed next.  This shows that priority scheduling is an average non-preemptive scheduling compared to SJF while FCFS is the worst because it has the highest average waiting time and average turnaround time. 
 
 Output : 
-|Course Code|Duration|Waiting Time|Turnaround Time|
+|Course Code|Arrival Time|Priority|Waiting Time|Turnaround Time|
 |---|---|---|---|
-|2201|3|0|3|
-|3401|2|2|4|
-|1103|1|3|4|
+|2201|1|2|0|3|
+|3401|2|3|2|4|
+|1103|3|1|3|4|
 
 Order of scheduling =	2201	3401	1103
 
