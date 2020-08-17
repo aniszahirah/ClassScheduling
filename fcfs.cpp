@@ -41,14 +41,14 @@ void findAverageTime( int ccode[], int n, int bt[])
     findTurnAroundTime(ccode, n, bt, wt, tat);
  
     // display processes along with all details
-    cout << "Course code  "<< " Duration  "<< " Waiting time  " << " Turn around time\n";
+    cout << "Course code  "<< " Arrival Time  "<< " Duration  "<< " Waiting time  " << " Turn around time\n";
  
     // calculate total waiting time and total turn around time
     for (int i = 0; i < n; i++)
     {
         total_wt = total_wt + wt[i];
         total_tat = total_tat + tat[i];
-        cout << "   " << ccode[i] << "\t\t" << bt[i] <<"\t    "<< wt[i] <<"\t\t  " << tat[i] <<endl;
+        cout << "   " << ccode[i] << "\t\t" << i+1 << "\t\t" << bt[i] <<"\t    "<< wt[i] <<"\t\t  " << tat[i] <<endl;
     }
  
     cout << "Average waiting time = "<< (float)total_wt / (float)n;
