@@ -32,7 +32,7 @@ The input for analysis are as below:
 
 ## FCFS
 
-Give an analysis of your algo and compare it with the other two
+First Come First Serve (FCFS) is a scheduling algorithm that prioritizes what is in the queue first. The process that comes first in the ready queue will be executed first. The average waiting time is lower than SJF but higher than Priority Scheduling. The waiting time is lower than SJF because FCFS only takes what is in the array first but SJF computes it according to the duration. However, the average waiting time for FCFS is higher than Priority Scheduling because Priority Scheduling takes the priority into account without considering the duration of the process. For the same reason, the average turnaround time is also lower than SJF but higher than Priority Scheduling which makes the order of the process executed based on the arrival time resulted 2201 is executed first and followed by 3401 then 1103. To sum up, FCFS is the worst algorithm compared to SJF and Priority Scheduling because it gives the highest average waiting time and average turnaround time for not considering anything except the arrival time.
 
 Output :
 |Course Code|Arrival Time|Duration|Waiting Time|Turnaround Time|
@@ -41,7 +41,7 @@ Output :
 |3401|2|2|3|5|
 |1103|3|1|5|6|
 
-Order of scheduling =
+Order of scheduling =	2201 → 3401 → 1103
 
 Average waiting time = 2.66667
 
