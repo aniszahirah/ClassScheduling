@@ -14,7 +14,7 @@ struct Process
 
 void findWaitingTime(Process p[], int wt[], int n)
 {
-    wt[0] = p[0].arrival_time;            //waiting time for first process is zero
+    wt[0] = 0;            //waiting time for first process is zero
     //calculate waiting time
     for (int i = 1; i < n; i++)
     {
