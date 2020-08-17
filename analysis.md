@@ -75,7 +75,7 @@ Output :
 |3401|2|3|2|4|
 |1103|3|1|3|4|
 
-Order of scheduling =	2201	3401	1103
+Order of scheduling =	2201→3401→1103
 
 Average waiting time = 1.66667
 
