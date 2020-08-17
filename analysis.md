@@ -70,7 +70,7 @@ Priority Scheduling is a method of scheduling processes that depends on priority
 
 Output : 
 |Course Code|Arrival Time|Priority|Waiting Time|Turnaround Time|
-|---|---|---|---|
+|---|---|---|---|---|
 |2201|1|2|0|3|
 |3401|2|3|2|4|
 |1103|3|1|3|4|
