@@ -1,120 +1,122 @@
-/* Simple C++ program for implementation 
-of SJF scheduling */
-
-#include<iostream> 
-using namespace std; 
-
-struct Process
+#include <bits/stdc++.h>
+using namespace std;
+//structure for every process
+struct Process 
 {
-   int ccode;     // course code
-   int duration;      // class duration or burst time
-   int priority;  //priority
-   int arrival_time;   //prefered arrival time
+   	int ccode; 				// Process ID
+   	int duration; 			// Burst Time
+   	int priority; 			// Priority
+   	int arrival_time; 		// Arrival Time
 };
-
-void findWaitingTime(Process p[], int wt[], int n)
-{
-    wt[0] = 0;            //waiting time for first process is zero
-    //calculate waiting time
-    for (int i = 1; i < n; i++)
-    {
-        wt[i] = p[i-1].duration + wt[i-1];
-    }
-}
-
-void findTurnaroundTime(Process p[], int wt[], int tat[], int n)
-{
-	//calculate turnaround time
-	for(int i = 0; i < n; i++) 
-    { 
-    	tat[i] = p[i].duration + wt[i];  
-    }	
-}
 
 void swap(int *a, int *b) 
 { 
-    int temp = *a; 
+	int temp = *a; 
     *a = *b; 
     *b = temp; 
 } 
-  
-void arrangeArrival(int num, Process p[]) 
-{ 
-    for(int i = 0; i < num; i++) 
-    { 
-        for(int j = 0; j < num - i - 1; j++) 
-        { 
-            if(p[j].arrival_time > p[j + 1].arrival_time) 
-            {   	
-                swap(p[j].ccode, p[j + 1].ccode);
-                swap(p[j].duration, p[j + 1].duration); 
-                swap(p[j].priority, p[j + 1].priority); 
-                swap(p[j].arrival_time, p[j + 1].arrival_time); 
-            } 
-        } 
-    } 
-} 
 
-void completionTime(int num, Process p[]) 
-{ 
-    int temp, val; 
-    int s[num];
-	
-    s[0] = p[0].arrival_time + p[0].duration;
-      
-    for(int i = 1; i < num; i++) 
-    { 
-        temp = s[i-1]; 
-        int low = p[i].duration; 
+void findTurnAroundTime(Process proc[], int n, int wt[], int tat[]) 
+{
+   	for (int i = 0; i < n; i++)
+   	tat[i] = proc[i].duration + wt[i];
+}
+
+void findWaitingTime(Process proc[], int n, int wt[]) 			//waiting time of all process
+{
+    int rt[n];
+    int complete = 0, t = 0, minm = INT_MAX;
+    int shortest = 0, finish_time;
+    bool check = false;
+   
+    for (int i = 0; i < n; i++)
+    	rt[i] = proc[i].duration;
     	
-        for(int j = i; j < num; j++) 
-        { 
-            if(temp >= p[j].arrival_time && low >= p[j].duration) 
-            { 
-                low = p[j].duration; 
-                val = j; 
-            }
-    		
-       	 	swap(p[val].ccode, p[i].ccode);
-        	swap(p[val].duration, p[i].duration); 
-        	swap(p[val].priority, p[i].priority); 
-        	swap(p[val].arrival_time, p[i].arrival_time); 
-        }  
-    } 
-} 
-  
+    while (complete != n) {
+        for (int j = 0; j < n; j++) {
+        	if ((proc[j].arrival_time <= t) && (rt[j] < minm) && rt[j] > 0) 
+			{
+            	minm = rt[j];
+            	shortest = j;
+            	check = true;
+         	}
+      	}
+      	
+      	if (check == false) 
+		{
+         	t++;
+         	continue;
+      	}
+
+      	rt[shortest]--;      	// decrementing the remaining time
+      	minm = rt[shortest];
+      	
+      	if (minm == 0)
+         	minm = INT_MAX;
+
+      	if (rt[shortest] == 0)         // If a process gets completely executed
+		{
+        	complete++;
+        	check = false;
+        	finish_time = t + 1;
+
+        	wt[shortest] = finish_time - proc[shortest].duration - proc[shortest].arrival_time;        	// Calculate waiting time
+        	if (wt[shortest] < 0)
+        		wt[shortest] = 0;
+      	}
+      	t++;          	// Increment time
+   }
+   
+   for(int i = 0; i < n; i++)
+    {
+        int pos = i;
+        for(int j = i+1; j < n; j++)
+        {
+            if(wt[j]<wt[pos])
+                pos=j;
+        }
+ 
+        swap(proc[pos].ccode, proc[i].ccode);
+        swap(proc[pos].duration, proc[i].duration); 
+        swap(proc[pos].priority, proc[i].priority);
+        swap(proc[pos].arrival_time, proc[i].arrival_time); 
+        swap(wt[pos], wt[i]); 
+    }
+}
+
+// Function to calculate average time
+void findavgTime(Process proc[], int n) 
+{
+   	int wt[n], tat[n], total_wt = 0,
+   	total_tat = 0;
+   	
+   	findWaitingTime(proc, n, wt);					// Function to find waiting time of all processes
+   	findTurnAroundTime(proc, n, wt, tat);			// Function to find turn around time for all processes
+   	
+   	cout<<"\nFinal Result...\n"; 
+   	cout<<"Process ID\tClass Duration\tArrival Time\tWaiting Time\tTurnaround Time\n"; 
+   	for (int i = 0; i < n; i++) 
+	{
+      	total_wt = total_wt + wt[i];
+      	total_tat = total_tat + tat[i];
+      	cout << proc[i].ccode << "\t\t" << proc[i].duration << "\t\t" << proc[i].arrival_time << "\t\t" << wt[i] << "\t\t" << tat[i] << "\n"; 
+   	}
+   	
+   	cout << "\nAverage waiting time = " << (float)total_wt / (float)n; cout << "\nAverage turnaround time = " << (float)total_tat / (float)n;
+}
+
+// main function
 int main() 
-{ 
-    Process proc[] = {{2201,3,2,1}, {3401, 2, 3,2}, {1103, 1,1,3}}; 
-	
-    int n = sizeof proc / sizeof proc[0];
-    int twt = 0, ttat = 0; 
-    int wt[n], tat[n]; 
-    
-    cout<<"Before Arrange...\n"; 
+{
+   	Process proc[] = {{2201, 3, 2, 1}, {3401, 2, 3, 2}, {1103, 1, 1, 3}};
+   	int n = sizeof(proc) / sizeof(proc[0]);
+   	cout<<"Before Arrange...\n"; 
     cout<<"Process ID\tArrival Time\tPriority\tClass Duration\n"; 
     for(int i = 0; i < n; i++) 
     { 
         cout << proc[i].ccode << "\t\t" << proc[i].arrival_time << "\t\t" << proc[i].priority <<"\t\t" << proc[i].duration << "\n"; 
-    } 
-    
-    arrangeArrival(n, proc);
-    completionTime(n, proc); 
-    findWaitingTime(proc, wt, n);
-    findTurnaroundTime(proc, wt, tat, n);
-    
-    cout<<"\nFinal Result...\n"; 
-    cout<<"Process ID\tArrival Time\tPriority\tClass Duration\tWaiting Time\tTurnaround Time\n"; 
-    for(int i = 0; i < n; i++) 
-    { 
-    	twt += wt[i];
-        ttat += tat[i];
-    	cout << proc[i].ccode << "\t\t" << proc[i].arrival_time << "\t\t" << proc[i].priority <<"\t\t" << proc[i].duration << "\t\t" << wt[i] << "\t\t" << tat[i] << "\n"; 
-    }  
-    
-    cout << "\n\nAverage Waiting Time = " << (float)twt / (float)n;     //average waiting time
-    cout << "\nAverage Turnaround Time = " << (float)ttat / (float)n;     //average turnaround time;
-     
-    return 0;
-} 
-
+    }
+   	
+   	findavgTime(proc, n);
+   	return 0;
+}
