@@ -49,18 +49,18 @@ Average turnaround time = 4.66667
 
 ## SJF
 
-Shortest Job First Scheduling is a method of scheduling processes that prioritize burst time. The processes with shortest burst time will be carried out first, whereas jobs with equal burst time are carried out on FCFS basis which is according to their respective arrival time. In this case, the average waiting time and average turnaround time for SJF scheduling is lower than FCFS but compared to priority, the average waiting time is equal meanwhile the average turnaround time is lower. The average turnaround time is lower than priority scheduling because SJF scheduling considers the duration of a process rather than priority. As it did not consider the arrival time unless for the first class, it has a lower average waiting time and turnaround time than FCFS scheduling. The order of executed processes which is based on their arrival time and class duration start with 2201 and followed by 1103, then 3401. 
+Shortest Job First Scheduling is a method of scheduling processes that prioritize burst time. The processes with shortest burst time will be carried out first, whereas jobs with equal burst time are carried out on FCFS basis which is according to their respective arrival time. In this case, the average waiting time and average turnaround time for SJF scheduling is lower than FCFS and priority scheduling. The average waiting time and turnaround time for SJF is lower than priority scheduling because SJF scheduling considers the duration of a process rather than priority. As it did not consider the arrival time unless for the first class, SJF scheduling also produce lower average waiting time and turnaround time than FCFS scheduling. The order of executed processes which is based on their arrival time and class duration start with 2201 and followed by 1103, then 3401. Hence, SJF is the best algorithm for non-preemptive scheduling as it gives the shortest average waiting time and turnaround time to execute processes.
 
 Output : 
 |Course Code|Arrival Time|Duration|Waiting Time|Turnaround Time|
 |---|---|---|---|---|
 |2201|1|3|0|3|
 |1103|3|1|1|2|
-|3401|2|2|4|5|
+|3401|2|2|3|5|
 
 Order of scheduling = 2201 → 1103 → 3401
 
-Average Waiting Time = 1.66667
+Average Waiting Time = 1.33333
 
 Average Turnaround Time = 3.33333
 
