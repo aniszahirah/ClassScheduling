@@ -49,18 +49,18 @@ Average turnaround time = 4.66667
 
 ## SJF
 
-Give an analysis of your algo and compare it with the other two
+Shortest Job First Scheduling is a method of scheduling processes that prioritize burst time. The processes with shortest burst time will be carried out first, whereas jobs with equal burst time are carried out on FCFS basis which is according to their respective arrival time. In this case, the average waiting time and average turnaround time for SJF scheduling is lower than FCFS but compared to priority, the average waiting time is equal meanwhile the average turnaround time is lower. The average turnaround time is lower than priority scheduling because SJF scheduling considers the duration of a process rather than priority. As it did not consider the arrival time unless for the first class, it has a lower average waiting time and turnaround time than FCFS scheduling. The order of executed processes which is based on their arrival time and class duration start with 2201 and followed by 1103, then 3401. 
 
 Output : 
 |Course Code|Arrival Time|Duration|Waiting Time|Turnaround Time|
 |---|---|---|---|---|
-|2201|1|3|3|6|
-|3401|3|2|1|3|
-|1103|2|1|0|1|
+|2201|1|3|0|3|
+|1103|3|1|1|2|
+|3401|2|2|4|5|
 
-Order of scheduling =
+Order of scheduling = 2201 → 1103 → 3401
 
-Average Waiting Time = 1.33333
+Average Waiting Time = 1.66667
 
 Average Turnaround Time = 3.33333
 
