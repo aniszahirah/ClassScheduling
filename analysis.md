@@ -35,11 +35,11 @@ The input for analysis are as below:
 Give an analysis of your algo and compare it with the other two
 
 Output :
-|Course Code|Duration|Waiting Time|Turnaround Time|
-|---|---|---|---|
-|2201|3|0|3|
-|3401|2|3|5|
-|1103|1|5|6|
+|Course Code|Arrival Time|Duration|Waiting Time|Turnaround Time|
+|---|---|---|---|---|
+|2201|1|3|0|3|
+|3401|2|2|3|5|
+|1103|3|1|5|6|
 
 Order of scheduling =
 
@@ -52,11 +52,11 @@ Average turnaround time = 4.66667
 Give an analysis of your algo and compare it with the other two
 
 Output : 
-|Course Code|Duration|Waiting Time|Turnaround Time|
-|---|---|---|---|
-|2201|3|3|6|
-|3401|2|1|3|
-|1103|1|0|1|
+|Course Code|Arrival Time|Duration|Waiting Time|Turnaround Time|
+|---|---|---|---|---|
+|2201|1|3|3|6|
+|3401|3|2|1|3|
+|1103|2|1|0|1|
 
 Order of scheduling =
 
