@@ -3,6 +3,7 @@ of SJF scheduling */
 
 #include<iostream> 
 using namespace std; 
+
 struct Process
 {
    int ccode;     // course code
@@ -13,7 +14,7 @@ struct Process
 
 void findWaitingTime(Process p[], int wt[], int n)
 {
-    wt[0] = 0;            //waiting time for first process is zero
+    wt[0] = p[0].arrival_time;            //waiting time for first process is zero
     //calculate waiting time
     for (int i = 1; i < n; i++)
     {
@@ -30,60 +31,80 @@ void findTurnaroundTime(Process p[], int wt[], int tat[], int n)
     }	
 }
 
-void arrangeArrival(int n, Process p[]) 
+void swap(int *a, int *b) 
 { 
-	int i, j, pos, temp;
-	float avg_wt, avg_tat, total;
-	int wt[n], tat[n], ttat = 0, twt = 0;
-	
-    //sorting duration, priority and class code in ascending order using selection sort
-    for(i = 0; i < n; i++)
-    {
-        pos = i;
-        for(j = i + 1; j < n; j++)
-        {
-            if(p[j].duration < p[pos].duration)
-                pos = j;
-        }
- 
-        temp = p[i].duration;
-        p[i].duration = p[pos].duration;
-        p[pos].duration = temp;
- 
-        temp = p[i].priority;
-        p[i].priority = p[pos].priority;
-        p[pos].priority = temp;
- 
-        temp = p[i].ccode;
-        p[i].ccode = p[pos].ccode;
-        p[pos].ccode = temp;
-    }
-    
-    findWaitingTime(p, wt, n);
-    
-    findTurnaroundTime(p, wt, tat, n);
-    
-    cout<<"\nFinal Result...\n"; 
-    cout<<"Process ID\tClass Duration\tPriority\tWaiting Time\tTurnaround Time\n"; 
-    for(i = 0; i < n; i++) 
+    int temp = *a; 
+    *a = *b; 
+    *b = temp; 
+} 
+  
+void arrangeArrival(int num, Process p[]) 
+{ 
+    for(int i = 0; i < num; i++) 
     { 
-    	twt += wt[i];
-        ttat += tat[i];
-    	cout << p[i].ccode << "\t\t" << p[i].duration << "\t\t" << p[i].priority << "\t\t" << wt[i] << "\t\t" << tat[i] << "\n"; 
-    }  
-    
-    cout << "\n\nAverage Waiting Time = " << (float)twt / (float)n;     //average waiting time
-    cout << "\nAverage Turnaround Time = " << (float)ttat / (float)n;     //average turnaround time;
- 
-}  
+        for(int j = 0; j < num - i - 1; j++) 
+        { 
+            if(p[j].arrival_time > p[j + 1].arrival_time) 
+            {   	
+                swap(p[j].ccode, p[j + 1].ccode);
+                swap(p[j].duration, p[j + 1].duration); 
+                swap(p[j].priority, p[j + 1].priority); 
+                swap(p[j].arrival_time, p[j + 1].arrival_time); 
+            } 
+        } 
+    } 
+} 
 
+/*
+mat[][0] = ccode
+mat[][1] = arrival_time
+mat[][2] = burst time @ duration
+mat[][3] = temp storage
+mat[][4] = wt
+mat[][5] = tat
+
+*/
+void completionTime(int num, Process p[]) 
+{ 
+    int temp, val; 
+    int s[num];
+    
+    // wt[i] = p[i-1].duration + wt[i-1];
+    // tat[i] = p[i].duration + wt[i];  
+    s[0] = p[0].arrival_time + p[0].duration;
+      
+    for(int i = 1; i < num; i++) 
+    { 
+        temp = s[i-1]; 
+        int low = p[i].duration; 
+    	
+        for(int j = i; j < num; j++) 
+        { 
+            if(temp >= p[j].arrival_time && low >= p[j].duration) 
+            { 
+                low = p[j].duration; 
+                val = j; 
+            }
+    		
+       	 	swap(p[val].ccode, p[i].ccode);
+        	swap(p[val].duration, p[i].duration); 
+        	swap(p[val].priority, p[i].priority); 
+        	swap(p[val].arrival_time, p[i].arrival_time); 
+        }  
+    } 
+    
+    
+} 
+  
 int main() 
 { 
-	Process proc[] = {{2201,3,2,1}, {3401, 2, 3,2}, {1103, 1,1,3}}; 
+    Process proc[] = {{2201,3,2,1}, {3401, 2, 3,2}, {1103, 1,1,3}}; 
 	
     int n = sizeof proc / sizeof proc[0];
+    int twt = 0, ttat = 0; 
+    int wt[n], tat[n]; 
     
-	cout<<"Before Arrange...\n"; 
+    cout<<"Before Arrange...\n"; 
     cout<<"Process ID\tArrival Time\tPriority\tClass Duration\n"; 
     for(int i = 0; i < n; i++) 
     { 
@@ -91,6 +112,22 @@ int main()
     } 
     
     arrangeArrival(n, proc);
+    completionTime(n, proc); 
+    findWaitingTime(proc, wt, n);
+    findTurnaroundTime(proc, wt, tat, n);
     
-    return 0;  
+    cout<<"\nFinal Result...\n"; 
+    cout<<"Process ID\tArrival Time\tPriority\tClass Duration\tWaiting Time\tTurnaround Time\n"; 
+    for(int i = 0; i < n; i++) 
+    { 
+    	twt += wt[i];
+        ttat += tat[i];
+    	cout << proc[i].ccode << "\t\t" << proc[i].arrival_time << "\t\t" << proc[i].priority <<"\t\t" << proc[i].duration << "\t\t" << wt[i] << "\t\t" << tat[i] << "\n"; 
+    }  
+    
+    cout << "\n\nAverage Waiting Time = " << (float)twt / (float)n;     //average waiting time
+    cout << "\nAverage Turnaround Time = " << (float)ttat / (float)n;     //average turnaround time;
+     
+    return 0;
 } 
+
